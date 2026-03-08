@@ -1,0 +1,16 @@
+[
+  "test/test_api.py::test_get_info_about_prizes",
+  "test/test_api.py::test_get_info_about_rental",
+  "test/test_api.py::test_get_info_by_id",
+  "test/test_api.py::test_get_info_with_old_token",
+  "test/test_api.py::test_get_info_with_wrong_api_method",
+  "test/test_api.py::test_get_info_with_wrong_id",
+  "test/test_api.py::test_get_info_without_id",
+  "test/test_api.py::test_get_info_without_token",
+  "test/test_ui.py::test_add_to_folder_without_login",
+  "test/test_ui.py::test_director_info",
+  "test/test_ui.py::test_film_info",
+  "test/test_ui.py::test_film_rate",
+  "test/test_ui.py::test_film_watch_without_login",
+  "test/test_ui.py::test_kinopoisk_hd"
+]
