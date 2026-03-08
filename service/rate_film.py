@@ -3,14 +3,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 from selenium.webdriver.remote.webdriver import WebDriver
+from config.config import BASE_URL
 
 class FilmRating():
     def __init__(self, browser:WebDriver) -> None:
         """Заходит на сайт"""
         self._driver = browser
-        self._driver.get("https://www.kinopoisk.ru/film/6290547/")
-        
-    sleep(4)
+        self._driver.get(BASE_URL + "/film/6290547/")
+        sleep(4)
 
     def click_rate(self) -> None:
         WebDriverWait(self._driver, 10).until(

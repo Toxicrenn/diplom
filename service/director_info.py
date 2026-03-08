@@ -4,14 +4,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import allure
 from selenium.webdriver.remote.webdriver import WebDriver
 from time import sleep
-import undetected_chromedriver as uc
-from selenium.webdriver.chrome.options import Options
+from config.config import BASE_URL
 
 class DirectorInfo:
     def __init__(self, browser:WebDriver) -> None:
         """Заходит на сайт"""
         self._driver = browser
-        self._driver.get("https://www.kinopoisk.ru/name/7640/")
+        self._driver.get(BASE_URL + "name/7640/")
         sleep(2)
     
     @allure.step('Получение информации о режиссере')   

@@ -11,15 +11,18 @@ from service.rate_film import FilmRating
 from service.hd_kinopoisk import KinopoiskHD
 from service.add_to_folder_without_login import AddToFolderFilm
 from service.director_info import DirectorInfo
+from config.config import executable_path
 
+@pytest.fixture
+def browser():
+    driver = webdriver.Firefox()
+    yield driver
+    driver.quit()
+
+@pytest.mark.ui
 @allure.title("Получение информации о фильме")
 @allure.story("Получение информации")
-def test_film_info():
-    service = Service(executable_path=r"C:\Users\ari\Desktop\тест\geko\geckodriver.exe")
-    firefox_options = Options()
-    firefox_options.add_argument("--private")
-    browser = webdriver.Firefox(service=service, options=firefox_options)
-
+def test_film_info(browser):
     film_page = FilmInfo(browser)
     expected_info = {
         'year': '1994',
@@ -33,14 +36,10 @@ def test_film_info():
     with allure.step("Закрытие браузера"):
         browser.quit()
 
+@pytest.mark.ui
 @allure.title("Редирект на страницу авторизации при попытке оценить фильм")
 @allure.story("Неавторизованный пользователь")
-def test_film_rate():
-    service = Service(executable_path=r"C:\Users\ari\Desktop\тест\geko\geckodriver.exe")
-    firefox_options = Options()
-    firefox_options.add_argument("--private")
-    browser = webdriver.Firefox(service=service, options=firefox_options)
-
+def test_film_rate(browser):
     film_rating = FilmRating(browser)
     with allure.step("Кликнуть на кнопку 'Оценить фильм'"):
         film_rating.click_rate()
@@ -60,12 +59,7 @@ def test_film_rate():
 
 @allure.title("Редирект на страницу авторизации при попытке посмотреть фильмы")
 @allure.story("Неавторизованный пользователь")
-def test_kinopoisk_hd():
-    service = Service(executable_path=r"C:\Users\ari\Desktop\тест\geko\geckodriver.exe")
-    firefox_options = Options()
-    firefox_options.add_argument("--private")
-    browser = webdriver.Firefox(service=service, options=firefox_options)
-
+def test_kinopoisk_hd(browser):
     film_rating = KinopoiskHD(browser)
     with allure.step("Кликнуть на кнопку 'Онлайн-кинотеатр'"):
         film_rating.click_kinopoisk_hd()
@@ -79,14 +73,10 @@ def test_kinopoisk_hd():
     with allure.step("Закрытие браузера"):
         browser.quit()
 
+@pytest.mark.ui
 @allure.title("Редирект на страницу авторизации при попытке добавить фильм в папку")
 @allure.story("Неавторизованный пользователь")
-def test_add_to_folder_without_login():
-    service = Service(executable_path=r"C:\Users\ari\Desktop\тест\geko\geckodriver.exe")
-    firefox_options = Options()
-    firefox_options.add_argument("--private")
-    browser = webdriver.Firefox(service=service, options=firefox_options)
-
+def test_add_to_folder_without_login(browser):
     watch_film = AddToFolderFilm(browser)
     with allure.step("Кликнуть на кнопку 'Добавить в папку'"):
         watch_film.click_add()
@@ -101,14 +91,10 @@ def test_add_to_folder_without_login():
     with allure.step("Закрытие браузера"):
         browser.quit()
 
+@pytest.mark.ui
 @allure.title("Получение информации о режиссере")
 @allure.story("Получение информации")
-def test_director_info():
-    service = Service(executable_path=r"C:\Users\ari\Desktop\тест\geko\geckodriver.exe")
-    firefox_options = Options()
-    firefox_options.add_argument("--private")
-    browser = webdriver.Firefox(service=service, options=firefox_options)
-
+def test_director_info(browser):
     director_page = DirectorInfo(browser)
     expected_info = {
         'name_rus': 'Квентин Тарантино',

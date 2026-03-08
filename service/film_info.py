@@ -4,14 +4,13 @@ from selenium.webdriver.support import expected_conditions as EC
 import allure
 from selenium.webdriver.remote.webdriver import WebDriver
 from time import sleep
-import undetected_chromedriver as uc
-from selenium.webdriver.chrome.options import Options
+from config.config import BASE_URL
 
 class FilmInfo:
     def __init__(self, browser:WebDriver) -> None:
         """Заходит на сайт"""
         self._driver = browser
-        self._driver.get("https://www.kinopoisk.ru/film/6039/")
+        self._driver.get(BASE_URL + "/film/6039/")
         sleep(2)
     
     def get_film_info(self) -> dict:
